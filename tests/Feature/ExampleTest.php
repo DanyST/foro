@@ -2,22 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\FeatureTestCase;
 
-class ExampleTest extends TestCase
+class ExampleTest extends FeatureTestCase
 {
-    use DataBaseTransactions;
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
+    function testBasicTest()
     {
-        $user = factory(\App\User::class)->create([
+        $user = factory(\App\Models\User::class)->create([
             'name' => 'Dhani Herrera',
             'email' => 'dany.herrera.jks@gmail.com',
         ]);
