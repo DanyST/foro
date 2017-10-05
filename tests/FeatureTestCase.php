@@ -8,5 +8,13 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class FeatureTestCase extends TestCase
 {
-    use DataBaseMigrations;
+    use DataBaseTransactions;
+
+    protected function seeErrors(array $errors)
+    {
+        foreach($errors as $error)
+        {
+            $this->see($error);
+        }
+    }
 }

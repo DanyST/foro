@@ -17,14 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-ROute::get('posts/create', [
-    'uses' => 'PostController@create',
-    'as' => 'posts.create'
-]);
-
-Route::post('posts/create', [
-    'uses' => 'PostController@store',
-    'as' => 'posts.store'
-]);
+Route::get('/posts/{post}', [
+    'as' => 'posts.show',
+    'uses' => 'PostController@show'
+])->where('post', '[0-9]+');

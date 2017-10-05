@@ -3,17 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Post;
 
 class PostController extends Controller
 {
-    public function create(){
+    public function create()
+    {
         return view('posts.create');
     }
 
-    public function store(Request $request){
-        $data = $request->all();
-        $post = Post::create($data);
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+        $post = new Post($request->all());
+        auth()->user()->posts()->save($post);
         return $post->title;
+    }
+
+    public function show($id)
+    {
+        $post = Post::find($id);
+        return view('posts.show', compact('post'));
     }
 }
